@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.edutransporte;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -10,7 +10,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 import javax.sql.DataSource;
 
-@Configuration
+@Configuration // @Configuration
 public class DataConfiguration {
 
     @Value("${DB_URL:jdbc:postgresql://localhost:5432/nomedobanco}")
@@ -22,7 +22,7 @@ public class DataConfiguration {
     @Value("${DB_PASSWORD:123456}")
     private String dbPassword;
 
-    @Bean
+    @Bean // @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
@@ -32,7 +32,7 @@ public class DataConfiguration {
         return dataSource;
     }
 
-    @Bean
+    @Bean // @Bean
     public JpaVendorAdapter jpaVendorAdapter() {
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
         adapter.setDatabase(Database.POSTGRESQL);

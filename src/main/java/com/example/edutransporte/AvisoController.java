@@ -12,7 +12,7 @@ public class AvisoController {
     @GetMapping
     public List<String> listarAvisos() {
 
-        return List.of("Aviso 1", "Aviso 2");
+        return java.util.Arrays.asList("Aviso 1", "Aviso 2");
     }
 }
 

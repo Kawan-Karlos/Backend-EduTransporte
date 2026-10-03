@@ -1,4 +1,4 @@
-package com.example.edutransporte;
+package com.example.edutransporte.controller;
 
 import com.example.edutransporte.model.Aviso;
 import com.example.edutransporte.service.AvisoService;

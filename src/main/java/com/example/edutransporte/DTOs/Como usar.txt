@@ -1,0 +1,21 @@
+Usem essa pasta para criar uma cópia das entidades que possuem dados sensiveis. como CPF ou senha.
+
+por exemplo a entidade Aluno, assim que o cadastro for efetuado, será enviado para o banco de dados todas suas informações como:
+
+nome
+senha
+cpf
+cidade
+JWT
+faculdade
+etc..
+
+ao clicar em enviar é disparado uma requisição POST com esses dados. e essa requisição retorna um DTO do objeto aluno sem algumas informações. Por exemplo:
+
+nome
+cidade
+faculdade
+cidade
+etc..
+
+O DTO funciona como uma camada que esconde os dados sensiveis para eles não precisarem transitar sempre por ai.

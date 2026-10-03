@@ -1,4 +1,4 @@
-package com.example.edutransporte;
+package com.example.edutransporte.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,67 +1,43 @@
 package com.example.edutransporte.model;
 
-import java.time.LocalDate;
+import com.example.edutransporte.model.converter.TipoAvisoConverter;
+import com.example.edutransporte.model.enums.TipoAviso;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "avisos")
+@Table(name = "aviso")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Aviso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
+    @Column(nullable = false, length = 100)
     private String titulo;
+
+    @Column(columnDefinition = "TEXT")
     private String descricao;
-    private LocalDate data;
 
-    // Construtor vazio (obrigatório para o JPA)
-    public Aviso() {
-    }
+    @Convert(converter = TipoAvisoConverter.class)
+    @Column(nullable = false)
+    private TipoAviso tipo;
 
-    // Construtor completo
-    public Aviso(Long id, String titulo, String descricao, LocalDate data) {
-        this.id = id;
-        this.titulo = titulo;
-        this.descricao = descricao;
-        this.data = data;
-    }
+    @Column(length = 50)
+    private String icon;
 
-    // Getters e Setters
-    public Long getId() {
-        return id;
-    }
+    @CreationTimestamp
+    @Column(name = "data", updatable = false)
+    private LocalDateTime data;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public LocalDate getData() {
-        return data;
-    }
-
-    public void setData(LocalDate data) {
-        this.data = data;
-    }
+    @Column
+    private Boolean ativo = true;
 }

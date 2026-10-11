@@ -21,7 +21,7 @@ public class AvisoService {
         return avisoRepository.findAll();
     }
 
-    public Optional<Aviso> buscarPorId(Long id) {
+    public Optional<Aviso> buscarPorId(Integer id) {
         return avisoRepository.findById(id);
     }
 
@@ -29,7 +29,7 @@ public class AvisoService {
         return avisoRepository.save(aviso);
     }
 
-    public void deletar(Long id) {
+    public void deletar(Integer id) {
         avisoRepository.deleteById(id);
     }
 }

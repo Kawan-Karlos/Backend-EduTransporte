@@ -26,7 +26,7 @@ public class AvisoController {
 
     // Buscar aviso por ID (GET)
     @GetMapping("/{id}")
-    public ResponseEntity<Aviso> buscarPorId(@PathVariable Long id) {
+    public ResponseEntity<Aviso> buscarPorId(@PathVariable Integer id) {
         return avisoService.buscarPorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -40,7 +40,7 @@ public class AvisoController {
 
     // Apagar um aviso por ID (DELETE)
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+    public ResponseEntity<Void> deletar(@PathVariable Integer id) {
         avisoService.deletar(id);
         return ResponseEntity.noContent().build();
     }

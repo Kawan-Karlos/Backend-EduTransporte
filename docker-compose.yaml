@@ -1,0 +1,15 @@
+services:
+  db:
+    image: mysql:8
+    container_name: edutransporte-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: "2006"
+      MYSQL_DATABASE: edutransportes
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysqldata:/var/lib/mysql
+
+volumes:
+  mysqldata:

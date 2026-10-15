@@ -12,7 +12,6 @@ import java.util.List;
 @Repository
 public interface ParadaRepository extends JpaRepository<Parada, ParadaId> {
 
-    // Paradas da viagem na ordem do trajeto
-    @Query("select p from Parada p where p.viagem.id = :viagemId order by p.id.ordem asc")
-    List<Parada> findByViagemOrdenadas(@Param("viagemId") Integer viagemId);
+    @Query("select p from Parada p where p.viagem.id = :viagemId order by p.id.ordem")
+    List<Parada> listarPorViagem(@Param("viagemId") Integer viagemId);
 }

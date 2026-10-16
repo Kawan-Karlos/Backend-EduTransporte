@@ -22,7 +22,7 @@ public class Aluno {
     @Column(name = "numero_celular", nullable = false, length = 15)
     private String numeroCelular;
 
-    @Column(nullable = false, length = 10)
+    @Column(nullable = false, length = 100)
     private String senha;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

@@ -6,7 +6,9 @@ import com.example.edutransporte.model.Cidade;
 import com.example.edutransporte.model.Motorista;
 import com.example.edutransporte.repository.CidadeRepository;
 import com.example.edutransporte.repository.MotoristaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
@@ -17,8 +19,12 @@ import java.util.Optional;
 @Service
 public class MotoristaService {
 
+    @Autowired
     private final MotoristaRepository motoristaRepository;
+    @Autowired
     private final CidadeRepository cidadeRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public MotoristaService(MotoristaRepository motoristaRepository, CidadeRepository cidadeRepository) {
         this.motoristaRepository = motoristaRepository;
@@ -46,12 +52,14 @@ public class MotoristaService {
         Cidade cidade = cidadeRepository.findById(r.cidadeId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cidade não encontrada"));
 
+        String senhaCriptografada = passwordEncoder.encode(r.senha());
+
         Motorista m = new Motorista();
         m.setCpf(r.cpf());
         m.setNomeCompleto(r.nomeCompleto());
         m.setEmail(r.email());
         m.setNumeroCelular(r.numeroCelular());
-        m.setSenha(r.senha());
+        m.setSenha(senhaCriptografada);
         m.setCarteiraConducao(r.carteiraConducao());
         m.setCidade(cidade);
         return toResponse(motoristaRepository.save(m));

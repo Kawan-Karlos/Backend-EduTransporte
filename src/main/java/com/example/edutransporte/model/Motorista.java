@@ -25,7 +25,7 @@ public class Motorista {
     @Column(name = "numero_celular", nullable = false, length = 15)
     private String numeroCelular;
 
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 100)
     private String senha;
 
     @Column(name = "carteira_conducao", nullable = false, length = 20)

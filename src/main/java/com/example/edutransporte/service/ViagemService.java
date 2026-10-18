@@ -65,14 +65,18 @@ public class ViagemService {
         return toResponse(viagemRepository.save(v));
     }
 
+    @Transactional
     public void deletar(Integer id) {
+        if (!viagemRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Viagem não encontrada");
+        }
         viagemRepository.deleteById(id);
     }
 
     // ---------- Paradas ----------
     @Transactional(readOnly = true)
     public List<ParadaResponse> listarParadas(Integer viagemId) {
-        return paradaRepository.listarPorViagem(viagemId).stream()
+        return paradaRepository.findByIdViagemIdOrderByIdOrdem(viagemId).stream()
                 .map(p -> new ParadaResponse(p.getId().getOrdem(), p.getNome(),
                         p.getLatitude(), p.getLongitude()))
                 .toList();
@@ -98,7 +102,7 @@ public class ViagemService {
     // ---------- Presença ----------
     @Transactional(readOnly = true)
     public List<PresencaResponse> listarPresencas(Integer viagemId) {
-        return presencaRepository.findByViagem(viagemId).stream().map(this::toResponse).toList();
+        return presencaRepository.findByIdViagemId(viagemId).stream().map(this::toResponse).toList();
     }
 
     @Transactional

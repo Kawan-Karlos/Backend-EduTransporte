@@ -9,6 +9,7 @@ import com.example.edutransporte.repository.AlunoRepository;
 import com.example.edutransporte.repository.CidadeRepository;
 import com.example.edutransporte.repository.FaculdadeRepository;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
@@ -22,12 +23,16 @@ public class AlunoService {
     private final AlunoRepository alunoRepository;
     private final CidadeRepository cidadeRepository;
     private final FaculdadeRepository faculdadeRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public AlunoService(AlunoRepository alunoRepository, CidadeRepository cidadeRepository,
-                        FaculdadeRepository faculdadeRepository) {
+    public AlunoService(AlunoRepository alunoRepository,
+                        CidadeRepository cidadeRepository,
+                        FaculdadeRepository faculdadeRepository,
+                        PasswordEncoder passwordEncoder) {
         this.alunoRepository = alunoRepository;
         this.cidadeRepository = cidadeRepository;
         this.faculdadeRepository = faculdadeRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Transactional(readOnly = true)
@@ -54,13 +59,17 @@ public class AlunoService {
         a.setCpf(r.cpf());
         a.setNomeCompleto(r.nomeCompleto());
         a.setNumeroCelular(r.numeroCelular());
-        a.setSenha(r.senha());
+        a.setSenha(passwordEncoder.encode(r.senha()));
         a.setCidade(cidade);
         a.setFaculdade(faculdade);
         return toResponse(alunoRepository.save(a));
     }
 
+    @Transactional
     public void deletar(String cpf) {
+        if (!alunoRepository.existsById(cpf)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Aluno não encontrado");
+        }
         alunoRepository.deleteById(cpf);
     }
 

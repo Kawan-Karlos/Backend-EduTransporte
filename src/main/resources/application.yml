@@ -2,9 +2,9 @@ spring:
   application:
     name: backend-edutransporte
   datasource:
-    url: jdbc:mysql://localhost:3307/edutransportes
+    url: jdbc:mysql://localhost:3306/edutransporte
     username: root
-    password: 2006
+    password: 22062005
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -13,3 +13,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+jwt:
+  secret: "ZUbKA5wnmoK/0MRvEzd1Uj42MqvoG1hRfQ9vFP6J3ukp1pBz9kl2oUvIVzU18txb"
+  expiration-ms: 86400000

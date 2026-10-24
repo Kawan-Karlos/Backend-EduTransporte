@@ -1,5 +1,6 @@
 package com.example.edutransporte.service;
 
+import com.example.edutransporte.DTOs.LoginDTO;
 import com.example.edutransporte.DTOs.MotoristaRequest;
 import com.example.edutransporte.DTOs.MotoristaResponse;
 import com.example.edutransporte.model.Cidade;
@@ -72,5 +73,16 @@ public class MotoristaService {
     private MotoristaResponse toResponse(Motorista m) {
         return new MotoristaResponse(m.getCpf(), m.getNomeCompleto(), m.getEmail(), m.getNumeroCelular(),
                 m.getCarteiraConducao(), m.getCidade().getId(), m.getCidade().getNome());
+    }
+
+    public boolean login(LoginDTO login){
+        Motorista motorista = motoristaRepository.findByCpf(login.cpf()).orElseThrow(() -> new IllegalArgumentException("Motorista não encontrado"));
+
+        if (motorista == null){
+            return false;
+        }
+
+        return passwordEncoder.matches(login.senha(), motorista.getSenha());
+
     }
 }

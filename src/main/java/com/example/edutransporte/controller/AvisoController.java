@@ -11,6 +11,8 @@ import java.util.List;
 @RequestMapping("/api/avisos")
 public class AvisoController {
 
+    //Filtro por TipoAviso e permissão para o admin criar e excluir avisos.
+
     private final AvisoService avisoService;
 
     // Injeção de dependência via construtor

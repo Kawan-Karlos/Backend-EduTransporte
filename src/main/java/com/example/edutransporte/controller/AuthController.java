@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/auth")
 public class AuthController {
 
+    //O AuthResponse deve devolver o token JWT, o ID do usuário e o TipoUsuario (Aluno, Motorista ou Admin), para o app redirecionar para (tabs) ou admin.
+
     private final AuthService authService;
 
     public AuthController(AuthService authService) {

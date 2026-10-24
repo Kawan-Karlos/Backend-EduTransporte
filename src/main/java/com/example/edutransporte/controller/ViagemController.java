@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//Rotas claras para iniciar viagem, encerrar viagem e buscar a viagem ativa do dia ( TipoViagem : Ida/Volta).
+
 @RestController
 @RequestMapping("/api/viagens")
 public class ViagemController {

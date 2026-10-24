@@ -13,6 +13,8 @@ import java.util.List;
 @RequestMapping("/api/viagens/{viagemId}/gps")
 public class GpsController {
 
+    //O motorista envia /gps ( POST GpsRequest ) periodicamente; os alunos consomem GET /gps/viagem/{id} ( GpsResponse ) para atualizar o pino do ônibus.
+
     private final GpsService gpsService;
 
     public GpsController(GpsService gpsService) {

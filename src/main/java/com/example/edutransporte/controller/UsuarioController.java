@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+// Organizar esse controller
+
+//Gestão de motoristas e vínculo com veículos (MotoristaService e MotoristaVeiculoService).
+//Atualizar dados pessoais, trocar senha ("security.tsx") e listar/ativar/desativar "users" no painel admin.
 @RestController
 @RequestMapping("/api/usuarios")
 public class UsuarioController {
@@ -30,7 +35,7 @@ public class UsuarioController {
         this.motoristaService = motoristaService;
     }
 
-    // ---------- Usuários (tb_usuario) ----------
+    // ---------- "Users" (tb_usuario) ----------
     @GetMapping
     public List<Usuario> listarTodos() {
         return usuarioService.listarTodos();

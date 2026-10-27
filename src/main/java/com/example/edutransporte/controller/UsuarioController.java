@@ -7,6 +7,7 @@ import com.example.edutransporte.DTOs.MotoristaResponse;
 import com.example.edutransporte.model.Usuario;
 import com.example.edutransporte.service.AlunoService;
 import com.example.edutransporte.service.MotoristaService;
+import com.example.edutransporte.service.UsuarioService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

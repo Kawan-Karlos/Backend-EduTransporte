@@ -27,8 +27,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/alunos").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/usuarios/alunos").permitAll()
                         .requestMatchers(HttpMethod.GET, "/cidades/**", "/faculdades/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/convites/*/validar").permitAll()
+                        // anyRequest() precisa ser SEMPRE a última regra
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);

@@ -2,10 +2,10 @@ spring:
   application:
     name: backend-edutransporte
   datasource:
-    url: jdbc:mysql://localhost:3306/edutransporte
-    username: root
-    password: 22062005
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:postgresql://db.sdijocxwzzdoulgcxnic.supabase.co:5432/postgres?sslmode=require
+    username: postgres
+    password: ${SUPABASE_DB_PASSWORD:19j783hd92j}
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: update
@@ -13,6 +13,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
 jwt:
   secret: "ZUbKA5wnmoK/0MRvEzd1Uj42MqvoG1hRfQ9vFP6J3ukp1pBz9kl2oUvIVzU18txb"

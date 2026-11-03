@@ -2,10 +2,10 @@ spring:
   application:
     name: backend-edutransporte
   datasource:
-    url: jdbc:mysql://localhost:3306/edutransporte
-    username: root
-    password: 22062005
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:postgresql://aws-1-us-west-2.pooler.supabase.com:5432/postgres?sslmode=require
+    username: postgres.sdijocxwzzdoulgcxnic
+    password: 19j783hd92j
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: update

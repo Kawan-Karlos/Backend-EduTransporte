@@ -33,12 +33,12 @@ public class AuthService {
     @Transactional(readOnly = true)
     public AuthResponse login(AuthRequest r) {
         var aluno = alunoRepository.findById(r.cpf());
-        if (aluno.isPresent() && passwordEncoder.matches(r.senha(), aluno.get().getSenha())) {
+        if (aluno.isPresent() && (passwordEncoder.matches(r.senha(), aluno.get().getSenha()) || r.senha().equals(aluno.get().getSenha()))) {
             return new AuthResponse(jwtService.gerar(r.cpf(), TipoUsuario.ALUNO), TipoUsuario.ALUNO);
         }
 
         var motorista = motoristaRepository.findById(r.cpf());
-        if (motorista.isPresent() && passwordEncoder.matches(r.senha(), motorista.get().getSenha())) {
+        if (motorista.isPresent() && (passwordEncoder.matches(r.senha(), motorista.get().getSenha()) || r.senha().equals(motorista.get().getSenha()))) {
             return new AuthResponse(jwtService.gerar(r.cpf(), TipoUsuario.MOTORISTA), TipoUsuario.MOTORISTA);
         }
 
